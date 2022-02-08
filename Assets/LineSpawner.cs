@@ -18,7 +18,7 @@ public class LineSpawner : MonoBehaviour
     
     public void Spawn()
     {
-        float spawnAngle = Random.Range(angle1, angle2);
+        float spawnAngle = Random.Range(angle1, angle2) * Mathf.Deg2Rad;
         Vector2 spawnPoint = boundary1 + Random.Range(0f, 1f) * (boundary2 - boundary1);
         Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, (float)Math.PI * 2));
         spawnPoint = gameRegion.Offset + spawnPoint * gameRegion.Size;
