@@ -39,6 +39,7 @@ public class SpawController : MonoBehaviour
             if (choosed <= 0)
             {
                 spawner.Spawn();
+                break;
             }
         }
         passedSinceSpawn = 0;
