@@ -8,6 +8,7 @@ public class SpawController : MonoBehaviour
 {
     [SerializeField] private List<LineSpawner> spawners;
     [SerializeField] private float frequency;
+    [SerializeField] private float nextFrequencyRatio = 1.0f;
 
     private float passedSinceSpawn = 0f;
     private float probabilitySum;
@@ -26,6 +27,7 @@ public class SpawController : MonoBehaviour
         if (passedSinceSpawn >= frequency)
         {
             Spawn();
+            frequency *= nextFrequencyRatio;
         }
     }
 
