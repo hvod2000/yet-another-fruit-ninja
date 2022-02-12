@@ -7,8 +7,10 @@ using Random = UnityEngine.Random;
 public class SpawController : MonoBehaviour
 {
     [SerializeField] private List<LineSpawner> spawners;
-    [SerializeField] private float frequency;
-    [SerializeField] private float nextFrequencyRatio = 1.0f;
+    [SerializeField] private float delayBetweenGroups = 4.0f;
+    [SerializeField] private float delayBetweenBlocks = 0.1f;
+    [SerializeField] private int minGroupSize = 2;
+    [SerializeField] private int maxGroupSize = 5;
 
     private float passedSinceSpawn = 0f;
     private float probabilitySum;
@@ -24,13 +26,20 @@ public class SpawController : MonoBehaviour
     void Update()
     {
         passedSinceSpawn += Time.deltaTime;
-        if (passedSinceSpawn >= frequency)
+        if (passedSinceSpawn >= delayBetweenGroups)
         {
-            Spawn();
-            frequency *= nextFrequencyRatio;
+            Spawn(Random.Range(minGroupSize, maxGroupSize + 1));
         }
     }
 
+    void Spawn(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Invoke("Spawn", delayBetweenBlocks * i);
+        }
+    }
+    
     void Spawn()
     {
         float choosed = Random.Range(0f, probabilitySum);
