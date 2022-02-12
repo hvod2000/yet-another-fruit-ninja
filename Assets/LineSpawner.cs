@@ -34,5 +34,10 @@ public class LineSpawner : MonoBehaviour
         {
             disappearable.gameRegion = gameRegion;
         }
+
+        if (child.TryGetComponent<Rotatable>(out var rotatable))
+        {
+            rotatable.angularVelocity = Random.Range(-1.0f, 1.0f) * Mathf.PI * 2;
+        }
     }
 }
