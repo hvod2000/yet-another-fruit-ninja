@@ -9,11 +9,13 @@ public class SpawController : MonoBehaviour
     [SerializeField] private List<LineSpawner> spawners;
     [SerializeField] private float delayBetweenGroups = 4.0f;
     [SerializeField] private float delayBetweenBlocks = 0.1f;
+    [SerializeField] private float timeBeforeDeath = 60f;
     [SerializeField] private int minGroupSize = 2;
     [SerializeField] private int maxGroupSize = 5;
 
     private float passedSinceSpawn = 0f;
     private float probabilitySum;
+    private float delayScale;
 
     private void Start()
     {
@@ -21,6 +23,13 @@ public class SpawController : MonoBehaviour
         {
             probabilitySum += spawner.probability;
         }
+
+        // D = timeBeforeDeath
+        // Q = delayScale
+        // S = delayBetweenGroups
+        // timeBeforeDeath = S + S * Q + S * Q * Q + ... = S / (1 - Q)
+        // => Q = 1 - S / timeBeforeDeath
+        delayScale = 1 - delayBetweenGroups / timeBeforeDeath;
     }
 
     void Update()
@@ -29,6 +38,8 @@ public class SpawController : MonoBehaviour
         if (passedSinceSpawn >= delayBetweenGroups)
         {
             Spawn(Random.Range(minGroupSize, maxGroupSize + 1));
+            delayBetweenGroups *= delayScale;
+            passedSinceSpawn = 0;
         }
     }
 
@@ -53,6 +64,5 @@ public class SpawController : MonoBehaviour
                 break;
             }
         }
-        passedSinceSpawn = 0;
     }
 }
