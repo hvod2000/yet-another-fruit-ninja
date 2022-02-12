@@ -39,5 +39,10 @@ public class LineSpawner : MonoBehaviour
         {
             rotatable.angularVelocity = Random.Range(-1.0f, 1.0f) * Mathf.PI * 2;
         }
+
+        if (child.TryGetComponent<Scalable>(out var scalable))
+        {
+            scalable.scaleSpeed = Random.Range(1f, 1.25f);
+        }
     }
 }
