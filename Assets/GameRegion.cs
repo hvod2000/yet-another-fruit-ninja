@@ -11,7 +11,7 @@ public class GameRegion : MonoBehaviour
 
     private Vector2 size;
     private Vector2 offset = Vector2.zero;
-    
+
     void Start()
     {
         float height = 2f * camera.orthographicSize;

@@ -20,9 +20,12 @@ public class Disappearable : MonoBehaviour
     void Update()
     {
         Vector2 pos = (Vector2) tr.position - gameRegion.Offset;
-        float spriteDiameter = (sprite.size * transform.lossyScale).magnitude;
-        
-        if (Math.Max(Math.Abs(pos.x) - gameRegion.Size.x / 2, Math.Abs(pos.y) - gameRegion.Size.y / 2) > spriteDiameter)
+        var spriteDiameter = (sprite.size * transform.lossyScale).magnitude;
+        var xDistance = Math.Max(Math.Abs(pos.x) - gameRegion.Size.x, 0.0f);
+        var yDistance = Math.Max(Math.Abs(pos.y) - gameRegion.Size.y, 0.0f);
+        var distance = Mathf.Sqrt(xDistance * xDistance + yDistance * yDistance);
+
+        if (distance >= spriteDiameter)
         {
             Destroy(gameObject);
         }

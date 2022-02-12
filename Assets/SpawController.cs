@@ -50,11 +50,11 @@ public class SpawController : MonoBehaviour
             Invoke("Spawn", delayBetweenBlocks * i);
         }
     }
-    
+
     void Spawn()
     {
         float choosed = Random.Range(0f, probabilitySum);
-        
+
         foreach (var spawner in spawners)
         {
             choosed -= spawner.probability;

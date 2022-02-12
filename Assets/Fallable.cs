@@ -8,9 +8,9 @@ public class Fallable : MonoBehaviour
     [SerializeField] private float gravity = 1.0f;
     public GameRegion gameRegion;
     public Vector2 velocity = Vector2.zero;
-    
+
     private Transform tr;
-    
+
     private void Start()
     {
         tr = GetComponent<Transform>();

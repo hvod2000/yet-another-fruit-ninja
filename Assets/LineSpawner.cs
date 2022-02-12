@@ -15,7 +15,7 @@ public class LineSpawner : MonoBehaviour
     [SerializeField] private GameObject childPrefab;
     [SerializeField] private GameRegion gameRegion;
 
-    
+
     public void Spawn()
     {
         float spawnAngle = Random.Range(angle1, angle2) * Mathf.Deg2Rad;
@@ -23,13 +23,13 @@ public class LineSpawner : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, (float)Math.PI * 2));
         spawnPoint = gameRegion.Offset + spawnPoint * gameRegion.Size;
         GameObject child = Instantiate(childPrefab, spawnPoint, rotation);
-        
+
         if (child.TryGetComponent<Fallable>(out var fallable))
         {
             fallable.gameRegion = gameRegion;
             fallable.velocity = new Vector2(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle)) * speed;
         }
-        
+
         if (child.TryGetComponent<Disappearable>(out var disappearable))
         {
             disappearable.gameRegion = gameRegion;
