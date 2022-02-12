@@ -9,22 +9,20 @@ public class Disappearable : MonoBehaviour
     public GameRegion gameRegion;
 
     private Transform tr;
-    private float spriteRadius;
+    private SpriteRenderer sprite;
 
     private void Start()
     {
         tr = GetComponent<Transform>();
-        if (TryGetComponent<SpriteRenderer>(out var sprite ))
-        {
-            spriteRadius = sprite.size.magnitude;
-        }
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         Vector2 pos = (Vector2) tr.position - gameRegion.Offset;
+        float spriteDiameter = (sprite.size * transform.lossyScale).magnitude;
         
-        if (Math.Max(Math.Abs(pos.x) - gameRegion.Size.x / 2, Math.Abs(pos.y) - gameRegion.Size.y / 2) > spriteRadius)
+        if (Math.Max(Math.Abs(pos.x) - gameRegion.Size.x / 2, Math.Abs(pos.y) - gameRegion.Size.y / 2) > spriteDiameter)
         {
             Destroy(gameObject);
         }
