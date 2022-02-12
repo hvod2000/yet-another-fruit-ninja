@@ -175,7 +175,11 @@ MonoBehaviour:
   - {fileID: 2089349298}
   - {fileID: 220670162}
   - {fileID: 480704335}
-  frequency: 0.5
+  delayBetweenGroups: 4
+  delayBetweenBlocks: 0.1
+  timeBeforeDeath: 60
+  minGroupSize: 2
+  maxGroupSize: 5
 --- !u!1 &220670160
 GameObject:
   m_ObjectHideFlags: 0
