@@ -12,6 +12,15 @@ public class Slicer : MonoBehaviour
 
     private Vector2 lastPointerPosition;
 
+    public Vector2 Direction
+    {
+        get
+        {
+            Vector2 pointer = camera.ScreenToWorldPoint(Input.mousePosition);
+            return pointer - lastPointerPosition;
+        }
+    }
+
     public bool IsCutting
     {
         get => isCutting;
