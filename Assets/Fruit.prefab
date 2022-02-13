@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4948309554366269719}
   - component: {fileID: 5936175501528791053}
   - component: {fileID: 58807692603067644}
+  - component: {fileID: -7218009058596817432}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -154,3 +155,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleSpeed: 1
+--- !u!114 &-7218009058596817432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948309554366269714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6141cde6c6e72ea59a21199256ac65a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slicer: {fileID: 0}
+  sprite: {fileID: 0}
+  slicePrefab: {fileID: 1626407779006836102, guid: 8abf46fee8dd46a5f82143d21c4aacd0, type: 3}
+  maxOfsset: 0.33
