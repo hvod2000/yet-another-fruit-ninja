@@ -6,25 +6,17 @@ public class Slicer : MonoBehaviour
 {
     [SerializeField] private Camera camera;
     [SerializeField] private GameObject tipPrefab;
-    [SerializeField] private float minimalCuttingSpeed = 1f;
+    [SerializeField] private float minimalCuttingSpeed = 5f;
 
     public bool isCutting = false;
 
-    private Vector2 lastPointerPosition;
+    private Vector2 lastTipPosition;
+    private Vector2 currentTipPosition;
+    private GameObject tip;
 
-    public Vector2 Direction
-    {
-        get
-        {
-            Vector2 pointer = camera.ScreenToWorldPoint(Input.mousePosition);
-            return pointer - lastPointerPosition;
-        }
-    }
+    public Vector2 Direction => CurrentTipPosition - lastTipPosition;
 
-    public Vector2 CurrentTipPosition
-    {
-        get => lastPointerPosition;
-    }
+    public Vector2 CurrentTipPosition => currentTipPosition;
 
     public bool IsCutting
     {
@@ -39,8 +31,7 @@ public class Slicer : MonoBehaviour
             isCutting = value;
             if (isCutting)
             {
-                Vector2 pointer = camera.ScreenToWorldPoint(Input.mousePosition);
-                tip = Instantiate(tipPrefab, pointer, new Quaternion(0, 0, 0, 0));
+                tip = Instantiate(tipPrefab, CurrentTipPosition, new Quaternion(0, 0, 0, 0));
             }
             else
             {
@@ -50,18 +41,18 @@ public class Slicer : MonoBehaviour
         }
     }
 
-    private GameObject tip;
 
     void Update()
     {
-        Vector2 position = camera.ScreenToWorldPoint(Input.mousePosition);
-        float pointerSpeed = (position - lastPointerPosition).magnitude / Time.deltaTime;
+        lastTipPosition = currentTipPosition;
+        currentTipPosition = camera.ScreenToWorldPoint(Input.mousePosition);
+
+        float pointerSpeed = (currentTipPosition - lastTipPosition).magnitude / Time.deltaTime;
         IsCutting = (Input.GetMouseButton(0) && pointerSpeed > minimalCuttingSpeed);
-        lastPointerPosition = position;
 
         if (tip)
         {
-            tip.transform.position = position;
+            tip.transform.position = currentTipPosition;
         }
     }
 }
