@@ -13,6 +13,7 @@ public class Slicer : MonoBehaviour
     private Vector2 lastTipPosition;
     private Vector2 currentTipPosition;
     private GameObject tip;
+    private bool wasCutting = false;
 
     public Vector2 Direction => CurrentTipPosition - lastTipPosition;
 
@@ -48,7 +49,9 @@ public class Slicer : MonoBehaviour
         currentTipPosition = camera.ScreenToWorldPoint(Input.mousePosition);
 
         float pointerSpeed = (currentTipPosition - lastTipPosition).magnitude / Time.deltaTime;
-        IsCutting = (Input.GetMouseButton(0) && pointerSpeed > minimalCuttingSpeed);
+        bool willCut = Input.GetMouseButton(0) && (pointerSpeed > minimalCuttingSpeed);
+        IsCutting = (willCut || wasCutting);
+        wasCutting = willCut;
 
         if (tip)
         {
