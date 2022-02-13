@@ -21,6 +21,11 @@ public class Slicer : MonoBehaviour
         }
     }
 
+    public Vector2 CurrentTipPosition
+    {
+        get => lastPointerPosition;
+    }
+
     public bool IsCutting
     {
         get => isCutting;
