@@ -23,6 +23,7 @@ public class LineSpawner : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, (float)Math.PI * 2));
         spawnPoint = gameRegion.Offset + spawnPoint * gameRegion.Size;
         GameObject child = Instantiate(childPrefab, spawnPoint, rotation);
+        child.transform.parent = transform.parent;
 
         if (child.TryGetComponent<Fallable>(out var fallable))
         {

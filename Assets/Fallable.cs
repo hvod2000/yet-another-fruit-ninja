@@ -13,6 +13,10 @@ public class Fallable : MonoBehaviour
 
     private void Start()
     {
+        if (!gameRegion)
+        {
+            gameRegion = GetComponentInParent<GameRegion>();
+        }
         tr = GetComponent<Transform>();
     }
 

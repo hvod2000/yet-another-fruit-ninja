@@ -15,6 +15,10 @@ public class Disappearable : MonoBehaviour
     {
         tr = GetComponent<Transform>();
         sprite = GetComponent<SpriteRenderer>();
+        if (!gameRegion)
+        {
+            gameRegion = GetComponentInParent<GameRegion>();
+        } 
     }
 
     void Update()
