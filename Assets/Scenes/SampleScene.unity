@@ -177,7 +177,7 @@ MonoBehaviour:
   - {fileID: 480704335}
   delayBetweenGroups: 4
   delayBetweenBlocks: 0.1
-  timeBeforeDeath: 60
+  timeBeforeDeath: 600
   minGroupSize: 2
   maxGroupSize: 5
 --- !u!1 &220670160
