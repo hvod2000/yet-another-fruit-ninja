@@ -9,22 +9,19 @@ public class Fallable : MonoBehaviour
     public GameRegion gameRegion;
     public Vector2 velocity = Vector2.zero;
 
-    private Transform tr;
-
     private void Start()
     {
         if (!gameRegion)
         {
             gameRegion = GetComponentInParent<GameRegion>();
         }
-        tr = GetComponent<Transform>();
     }
 
     void Update()
     {
-        Vector2 pos = tr.position;
+        Vector2 pos = transform.position;
         pos += (velocity * Time.deltaTime - new Vector2(0, gravity) / 2f * Time.deltaTime * Time.deltaTime) * gameRegion.Size;
         velocity.y -= gravity * Time.deltaTime;
-        tr.position = pos;
+        transform.position = pos;
     }
 }

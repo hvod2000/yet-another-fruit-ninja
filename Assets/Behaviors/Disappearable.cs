@@ -8,12 +8,10 @@ public class Disappearable : MonoBehaviour
 {
     public GameRegion gameRegion;
 
-    private Transform tr;
     private SpriteRenderer sprite;
 
     private void Start()
     {
-        tr = GetComponent<Transform>();
         sprite = GetComponent<SpriteRenderer>();
         if (!gameRegion)
         {
@@ -23,7 +21,7 @@ public class Disappearable : MonoBehaviour
 
     void Update()
     {
-        Vector2 pos = (Vector2) tr.position - gameRegion.Offset;
+        Vector2 pos = (Vector2) transform.position - gameRegion.Offset;
         var spriteDiameter = (sprite.size * transform.lossyScale).magnitude;
         var xDistance = Math.Max(Math.Abs(pos.x) - gameRegion.Size.x, 0.0f);
         var yDistance = Math.Max(Math.Abs(pos.y) - gameRegion.Size.y, 0.0f);
