@@ -22,7 +22,9 @@ public class Fallable : MonoBehaviour
     void Update()
     {
         Vector2 pos = transform.position;
-        pos += (velocity * Time.deltaTime - new Vector2(0, gravity) / 2f * Time.deltaTime * Time.deltaTime);
+        var a = new Vector2(0, -gravity);
+        var t = Time.deltaTime;
+        pos += (velocity * t + a * t * t / 2);
         velocity.y -= gravity * Time.deltaTime;
         transform.position = pos;
     }
