@@ -27,8 +27,9 @@ public class LineSpawner : MonoBehaviour
 
         if (child.TryGetComponent<Fallable>(out var fallable))
         {
+            Vector2 direction = new Vector2(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle));
+            fallable.velocity = direction * speed * gameRegion.Size;
             fallable.gameRegion = gameRegion;
-            fallable.velocity = new Vector2(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle)) * speed;
         }
 
         if (child.TryGetComponent<Disappearable>(out var disappearable))

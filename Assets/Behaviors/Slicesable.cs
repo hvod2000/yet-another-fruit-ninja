@@ -10,6 +10,7 @@ public class Slicesable : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private GameObject slicePrefab;
     [SerializeField] private float maxOfsset = 0.33f;
+    [SerializeField] private float sliceStartSpeed = 4f;
 
     private void Start()
     {
@@ -81,7 +82,7 @@ public class Slicesable : MonoBehaviour
         {
             if (TryGetComponent<Fallable>(out var fallable))
             {
-                sliceFallable.velocity = fallable.velocity + offset;
+                sliceFallable.velocity = fallable.velocity + offset.normalized * sliceStartSpeed;
             }
         }
 
