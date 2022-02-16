@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,9 +15,19 @@ public class GameRegion : MonoBehaviour
 
     void Start()
     {
+        offset = camera.transform.position;
+        UpdateCameraSize();
+    }
+
+    private void Update()
+    {
+        UpdateCameraSize();
+    }
+
+    private void UpdateCameraSize()
+    {
         float height = 2f * camera.orthographicSize;
         float width = height * camera.aspect;
         size = new Vector2(width, height);
-        offset = camera.transform.position;
     }
 }
